@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Butterfly.cs" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.1, 0.1, 0.6 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.337255, 0.32549, 0.301961, 1 )
+
+[sub_resource type="CapsuleMesh" id=3]
+material = SubResource( 2 )
+radius = 0.1
+radial_segments = 16
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.482353, 0.368627, 0.0352941, 1 )
+
+[sub_resource type="CubeMesh" id=5]
+material = SubResource( 4 )
+size = Vector3( 1, 0.01, 1 )
+
+[node name="Butterfly" type="RigidBody"]
+mode = 2
+mass = 0.01
+gravity_scale = 0.5
+script = ExtResource( 2 )
+_flapTimerPath = NodePath("FlapDelay")
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="FlapDelay" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Body" type="MeshInstance" parent="."]
+mesh = SubResource( 3 )
+
+[node name="LeftWing" type="MeshInstance" parent="Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.561708, 0, 0 )
+mesh = SubResource( 5 )
+
+[node name="RightWing" type="MeshInstance" parent="Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.577945, 0, 0 )
+mesh = SubResource( 5 )
