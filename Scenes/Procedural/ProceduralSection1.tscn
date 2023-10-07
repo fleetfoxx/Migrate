@@ -1,0 +1,329 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Scenes/Tree.tscn" type="PackedScene" id=1]
+
+[sub_resource type="VisualShaderNodeColorConstant" id=20]
+constant = Color( 0.0766571, 0.3224, 0.771209, 1 )
+
+[sub_resource type="VisualShaderNodeInput" id=5]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id=7]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=8]
+default_input_values = [ 0, 0.0, 1, 2.0 ]
+operator = 5
+
+[sub_resource type="VisualShaderNodeScalarOp" id=9]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=10]
+function = 19
+
+[sub_resource type="VisualShaderNodeVectorOp" id=11]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id=12]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id=21]
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=14]
+uniform_name = "ScalarUniform2"
+hint = 1
+min = 0.005
+max = 0.1
+
+[sub_resource type="VisualShaderNodeInput" id=22]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id=23]
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=24]
+function = 1
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=25]
+function = 0
+
+[sub_resource type="VisualShaderNodeScalarOp" id=26]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarOp" id=27]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=29]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarOp" id=30]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=31]
+uniform_name = "ScalarUniform"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=15]
+operator = 1
+
+[sub_resource type="VisualShaderNodeInput" id=16]
+input_name = "camera"
+
+[sub_resource type="VisualShaderNodeTransformVecMult" id=17]
+
+[sub_resource type="VisualShader" id=18]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx, async_visible;
+
+uniform float ScalarUniform;
+
+
+
+void vertex() {
+// Input:20
+	vec3 n_out20p0 = VERTEX;
+
+// VectorDecompose:21
+	float n_out21p0 = n_out20p0.x;
+	float n_out21p1 = n_out20p0.y;
+	float n_out21p2 = n_out20p0.z;
+
+// ScalarUniform:29
+	float n_out29p0 = ScalarUniform;
+
+// ScalarOp:27
+	float n_out27p0 = n_out29p0 * n_out21p0;
+
+// ScalarFunc:22
+	float n_out22p0 = cos(n_out27p0);
+
+// ScalarOp:28
+	float n_out28p0 = n_out29p0 * n_out21p2;
+
+// ScalarFunc:23
+	float n_out23p0 = sin(n_out28p0);
+
+// ScalarOp:24
+	float n_out24p0 = n_out22p0 * n_out23p0;
+
+// ScalarOp:25
+	float n_out25p0 = n_out24p0 + n_out21p1;
+
+// VectorCompose:19
+	vec3 n_out19p0 = vec3(n_out21p0, n_out25p0, n_out21p2);
+
+// Output:0
+	VERTEX = n_out19p0;
+
+}
+
+void fragment() {
+// Color:2
+	vec3 n_out2p0 = vec3(0.076657, 0.322400, 0.771209);
+	float n_out2p1 = 1.000000;
+
+// Output:0
+	ALBEDO = n_out2p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( 642.123, -138.448 )
+nodes/vertex/0/position = Vector2( 2700, 200 )
+nodes/vertex/2/node = SubResource( 14 )
+nodes/vertex/2/position = Vector2( 60, 100 )
+nodes/vertex/7/node = SubResource( 15 )
+nodes/vertex/7/position = Vector2( 660, 560 )
+nodes/vertex/8/node = SubResource( 16 )
+nodes/vertex/8/position = Vector2( 120, 660 )
+nodes/vertex/9/node = SubResource( 17 )
+nodes/vertex/9/position = Vector2( 340, 660 )
+nodes/vertex/10/node = SubResource( 5 )
+nodes/vertex/10/position = Vector2( 120, 520 )
+nodes/vertex/12/node = SubResource( 7 )
+nodes/vertex/12/position = Vector2( 840, 580 )
+nodes/vertex/13/node = SubResource( 8 )
+nodes/vertex/13/position = Vector2( 1120, 620 )
+nodes/vertex/15/node = SubResource( 9 )
+nodes/vertex/15/position = Vector2( 1320, 520 )
+nodes/vertex/16/node = SubResource( 10 )
+nodes/vertex/16/position = Vector2( 1100, 400 )
+nodes/vertex/17/node = SubResource( 11 )
+nodes/vertex/17/position = Vector2( 1720, 360 )
+nodes/vertex/18/node = SubResource( 12 )
+nodes/vertex/18/position = Vector2( 1520, 440 )
+nodes/vertex/19/node = SubResource( 21 )
+nodes/vertex/19/position = Vector2( 2460, 200 )
+nodes/vertex/20/node = SubResource( 22 )
+nodes/vertex/20/position = Vector2( 1060, 200 )
+nodes/vertex/21/node = SubResource( 23 )
+nodes/vertex/21/position = Vector2( 1240, 200 )
+nodes/vertex/22/node = SubResource( 24 )
+nodes/vertex/22/position = Vector2( 1840, 20 )
+nodes/vertex/23/node = SubResource( 25 )
+nodes/vertex/23/position = Vector2( 1840, 100 )
+nodes/vertex/24/node = SubResource( 26 )
+nodes/vertex/24/position = Vector2( 2020, 20 )
+nodes/vertex/25/node = SubResource( 27 )
+nodes/vertex/25/position = Vector2( 2220, 40 )
+nodes/vertex/27/node = SubResource( 29 )
+nodes/vertex/27/position = Vector2( 1620, -120 )
+nodes/vertex/28/node = SubResource( 30 )
+nodes/vertex/28/position = Vector2( 1620, 20 )
+nodes/vertex/29/node = SubResource( 31 )
+nodes/vertex/29/position = Vector2( 1160, -20 )
+nodes/vertex/connections = PoolIntArray( 8, 0, 9, 0, 9, 0, 7, 1, 7, 0, 12, 0, 12, 1, 13, 0, 13, 0, 15, 1, 16, 0, 15, 0, 2, 0, 16, 0, 18, 0, 17, 1, 15, 0, 18, 1, 10, 0, 17, 0, 10, 0, 7, 0, 19, 0, 0, 0, 20, 0, 21, 0, 21, 0, 19, 0, 21, 2, 19, 2, 22, 0, 24, 0, 23, 0, 24, 1, 24, 0, 25, 0, 21, 1, 25, 1, 25, 0, 19, 1, 21, 0, 27, 1, 27, 0, 22, 0, 21, 2, 28, 1, 28, 0, 23, 0, 29, 0, 27, 0, 29, 0, 28, 0 )
+nodes/fragment/0/position = Vector2( 1020, 160 )
+nodes/fragment/2/node = SubResource( 20 )
+nodes/fragment/2/position = Vector2( 820, 200 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=19]
+shader = SubResource( 18 )
+shader_param/ScalarUniform = 5.0
+
+[sub_resource type="PlaneMesh" id=2]
+material = SubResource( 19 )
+size = Vector2( 400, 200 )
+subdivide_width = 400
+subdivide_depth = 400
+
+[node name="Ground" type="MeshInstance"]
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+
+[node name="Tree" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -86.2215, 0, -59.1346 )
+
+[node name="Tree13" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -54.8175, 0, -37.9193 )
+
+[node name="Tree45" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -110.236, 0, -81.8719 )
+
+[node name="Tree14" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -61.605, 0, 1.24669 )
+
+[node name="Tree15" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 44.0784, 0, 36.5317 )
+
+[node name="Tree16" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -53.2528, 0, 49.1447 )
+
+[node name="Tree17" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52.5015, 0, 67.4162 )
+
+[node name="Tree18" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -55.7069, 0, 69.5367 )
+
+[node name="Tree19" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -109.751, 0, 92.1807 )
+
+[node name="Tree20" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55.6952, 0, -57.3988 )
+
+[node name="Tree2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -76.8944, 0, -25.0918 )
+
+[node name="Tree3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -83.2414, 0, 7.11691 )
+
+[node name="Tree4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -71.8166, 0, 31.469 )
+
+[node name="Tree5" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -76.6622, 0, 59.1105 )
+
+[node name="Tree6" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -69.3302, 0, 82.6322 )
+
+[node name="Tree21" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.4085, 0, 0, 0, 2.4085, 0, 0, 0, 2.4085, -172.456, 0, -82.7578 )
+
+[node name="Tree22" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.60567, 0, 0, 0, 1.60567, 0, 0, 0, 1.60567, -143.144, 0, -70.8933 )
+
+[node name="Tree23" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.60567, 0, 0, 0, 1.60567, 0, 0, 0, 1.60567, -154.043, 0, -8.00573 )
+
+[node name="Tree24" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.60567, 0, 0, 0, 1.60567, 0, 0, 0, 1.60567, -140.632, 0, 68.9026 )
+
+[node name="Tree25" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.60567, 0, 0, 0, 1.60567, 0, 0, 0, 1.60567, -115.899, 0, -27.9164 )
+
+[node name="Tree46" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.60567, 0, 0, 0, 1.60567, 0, 0, 0, 1.60567, -69.2345, 0, -84.8169 )
+
+[node name="Tree26" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.60567, 0, 0, 0, 1.60567, 0, 0, 0, 1.60567, -106.462, 0, 44.7342 )
+
+[node name="Tree27" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.4085, 0, 0, 0, 2.4085, 0, 0, 0, 2.4085, -178.592, 0, -50.2966 )
+
+[node name="Tree28" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.4085, 0, 0, 0, 2.4085, 0, 0, 0, 2.4085, -188.783, 0, 1.4199 )
+
+[node name="Tree29" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.4085, 0, 0, 0, 2.4085, 0, 0, 0, 2.4085, -170.439, 0, 40.5213 )
+
+[node name="Tree30" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.4085, 0, 0, 0, 2.4085, 0, 0, 0, 2.4085, -178.219, 0, 84.9044 )
+
+[node name="Tree31" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.4085, 0, 0, 0, 2.4085, 0, 0, 0, 2.4085, -134.786, 0, 29.4024 )
+
+[node name="Tree32" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 81.4768, 0, 68.5575 )
+
+[node name="Tree33" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 105.006, 0, -82.7578 )
+
+[node name="Tree34" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.4085, 0, -2.10558e-07, 0, 2.4085, 0, 2.10558e-07, 0, -2.4085, 167.712, 0, 92.1807 )
+
+[node name="Tree35" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.60567, 0, -1.40372e-07, 0, 1.60567, 0, 1.40372e-07, 0, -1.60567, 138.399, 0, 80.3162 )
+
+[node name="Tree36" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.60567, 0, -1.40372e-07, 0, 1.60567, 0, 1.40372e-07, 0, -1.60567, 149.298, 0, 17.4286 )
+
+[node name="Tree37" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.60567, 0, -1.40372e-07, 0, 1.60567, 0, 1.40372e-07, 0, -1.60567, 135.887, 0, -59.4798 )
+
+[node name="Tree38" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.60567, 0, -1.40372e-07, 0, 1.60567, 0, 1.40372e-07, 0, -1.60567, 111.154, 0, 37.3392 )
+
+[node name="Tree39" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.60567, 0, -1.40372e-07, 0, 1.60567, 0, 1.40372e-07, 0, -1.60567, 101.717, 0, -35.3113 )
+
+[node name="Tree40" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.4085, 0, -2.10558e-07, 0, 2.4085, 0, 2.10558e-07, 0, -2.4085, 173.848, 0, 59.7195 )
+
+[node name="Tree41" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.4085, 0, -2.10558e-07, 0, 2.4085, 0, 2.10558e-07, 0, -2.4085, 184.039, 0, 8.00295 )
+
+[node name="Tree42" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.4085, 0, -2.10558e-07, 0, 2.4085, 0, 2.10558e-07, 0, -2.4085, 165.694, 0, -31.0984 )
+
+[node name="Tree43" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.4085, 0, -2.10558e-07, 0, 2.4085, 0, 2.10558e-07, 0, -2.4085, 173.475, 0, -75.4816 )
+
+[node name="Tree44" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.4085, 0, -2.10558e-07, 0, 2.4085, 0, 2.10558e-07, 0, -2.4085, 130.042, 0, -19.9796 )
+
+[node name="Tree7" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 75.5648, 0, -55.1089 )
+
+[node name="Tree8" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 88.952, 0, -31.4297 )
+
+[node name="Tree9" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 69.306, 0, 14.0331 )
+
+[node name="Tree10" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 72.6926, 0, 36.3627 )
+
+[node name="Tree11" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 80.295, 0, 64.9549 )
+
+[node name="Tree12" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 64.9362, 0, 87.5105 )

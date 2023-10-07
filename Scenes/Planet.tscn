@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Planet.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/Utility/SphereSpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Tree.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/LeafPile.tscn" type="PackedScene" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.431373, 0.34902, 0, 1 )
+
+[sub_resource type="SphereMesh" id=6]
+material = SubResource( 5 )
+radius = 100.0
+height = 200.0
+radial_segments = 128
+rings = 64
+
+[node name="Planet" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 0.982795, -0.182575, 0, 0.182575, 0.982795, 0, 0, 0 )
+script = ExtResource( 1 )
+_spinInEditor = true
+_planetMeshPath = NodePath("PlanetMesh")
+
+[node name="PlanetMesh" type="MeshInstance" parent="."]
+mesh = SubResource( 6 )
+
+[node name="SphereSpawner" parent="PlanetMesh" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+Radius = 99.0
+Density = 49
+_sceneToSpawn = ExtResource( 4 )
+
+[node name="SphereSpawner2" parent="PlanetMesh" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+Radius = 99.0
+Density = 40
+_sceneToSpawn = ExtResource( 3 )
+
+[node name="SunPivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+
+[node name="Sunlight" type="OmniLight" parent="SunPivot"]
+transform = Transform( 1, 0, 0, 0, 1.00039, 0, 0, 0, 1.00039, 0, 701.383, 0 )
+light_color = Color( 1, 0.905882, 0.654902, 1 )
+shadow_enabled = true
+shadow_bias = 10.0
+omni_range = 3108.95

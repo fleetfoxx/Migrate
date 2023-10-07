@@ -1,0 +1,17 @@
+[gd_resource type="Environment" load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Skyboxes/belfast_sunset_puresky_1k.exr" type="Texture" id=1]
+
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 1 )
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+background_sky_orientation = Basis( 1, 0, 0, 0, 0.889392, 0.457144, 0, -0.457144, 0.889392 )
+background_color = Color( 1, 0.858824, 0.588235, 0.392157 )
+background_energy = 0.64
+ambient_light_color = Color( 1, 0.996078, 0.92549, 1 )
+ssao_enabled = true
+ssao_quality = 2
+ssao_edge_sharpness = 2.0

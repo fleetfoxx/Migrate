@@ -12,14 +12,13 @@ public class Butterfly : RigidBody
   private float _flapPower = 0.05f;
   private Vector3 _flapImpulse = new Vector3(0, 0.05f, 0);
   private float _boostPower = 0.2f;
-  private Vector3 _boostImpulse = new Vector3(0, 0.2f, -0.01f);
+  private Vector3 _boostImpulse = new Vector3(0, 0.1f, 0);
   private int _consecutiveGoodFlaps = 0;
   private Timer _flapTimer;
 
   public override void _Ready()
   {
     _flapTimer = GetNode<Timer>(_flapTimerPath);
-    LinearVelocity = Vector3.Forward * _speed;
   }
 
   public override void _PhysicsProcess(float delta)

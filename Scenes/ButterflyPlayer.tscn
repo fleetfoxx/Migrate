@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/ButterflyModel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/ButterflyPlayer.cs" type="Script" id=2]
+
+[sub_resource type="SphereShape" id=1]
+
+[node name="ButterflyPlayer" type="Area"]
+script = ExtResource( 2 )
+
+[node name="ButterflyModel" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.913446, -0.40696, 0, 0.40696, 0.913446, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
