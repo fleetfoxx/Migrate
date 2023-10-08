@@ -1,18 +1,41 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/ButterflyModel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/ButterflyPlayer.cs" type="Script" id=2]
 
 [sub_resource type="SphereShape" id=1]
-radius = 1.71778
+radius = 0.192665
 
-[node name="ButterflyPlayer" type="Area"]
-collision_mask = 3
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 25, 0.1, 25 )
+
+[node name="ButterflyPlayerPivot" type="Spatial"]
 script = ExtResource( 2 )
-_butterflyModelPath = NodePath("ButterflyModel")
+_playerPath = NodePath("Player")
+_butterflyModelPath = NodePath("Player/ButterflyModel")
+_areaPath = NodePath("Player/Collider")
 
-[node name="ButterflyModel" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 0.913446, -0.40696, 0, 0.40696, 0.913446, 0, 0, 0 )
+[node name="Player" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100.1, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="ButterflyModel" parent="Player" instance=ExtResource( 1 )]
+transform = Transform( 0.1, 0, 0, 0, 0.0913446, -0.040696, 0, 0.040696, 0.0913446, 0, 0, 0 )
+
+[node name="Collider" type="Area" parent="Player"]
+collision_mask = 3
+
+[node name="CollisionShape" type="CollisionShape" parent="Player/Collider"]
 shape = SubResource( 1 )
+
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 0.976781, 0.214241, 0, -0.214241, 0.976781, 0, 1.92867, 8.05277 )
+current = true
+fov = 35.0
+far = 1000.0
+
+[node name="GroundCollider" type="Area" parent="." groups=["ground"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0 )
+collision_layer = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="GroundCollider"]
+shape = SubResource( 2 )

@@ -71,10 +71,7 @@ radial_segments = 8
 rings = 4
 
 [node name="Planet" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 0.996717, -0.0809616, 0, 0.0809616, 0.996717, 0, 0, 0 )
 script = ExtResource( 1 )
-_turnSpeed = 10.0
-_planetMeshPath = NodePath("PlanetMesh")
 
 [node name="PlanetMesh" type="MeshInstance" parent="."]
 mesh = SubResource( 6 )
