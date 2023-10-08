@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Main.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/ButterflyPlayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/WorldEnvironment.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Planet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Music/NotMinecraft.wav" type="AudioStream" id=5]
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 26.2237, 1, 25.2125 )
@@ -29,10 +30,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223969, 99.4688, -200.644 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.947483, 199.169 )
 shape = SubResource( 4 )
 
-[node name="Planet" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, -0.824066, -0.563745, 0, 0.563745, -0.824066, 0, 0, 0 )
-
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.28853, 0.957471, 0, -0.957471, 0.28853, 0, 290.177, 0 )
 light_color = Color( 1, 0.929412, 0.615686, 1 )
 light_energy = 2.414
+
+[node name="Planet" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, -0.774541, 0.63182, 0, -0.63182, -0.774541, 0, 0, 0 )
+_spinInEditor = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -12.0
+autoplay = true

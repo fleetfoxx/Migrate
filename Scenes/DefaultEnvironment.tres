@@ -6,12 +6,19 @@
 panorama = ExtResource( 1 )
 
 [resource]
-background_mode = 2
+background_mode = 1
 background_sky = SubResource( 1 )
 background_sky_orientation = Basis( 1, 0, 0, 0, 0.889392, 0.457144, 0, -0.457144, 0.889392 )
-background_color = Color( 1, 0.858824, 0.588235, 0.392157 )
+background_sky_rotation = Vector3( -0.474782, 0, 0 )
+background_sky_rotation_degrees = Vector3( -27.203, 0, 0 )
+background_color = Color( 0.815686, 0.588235, 0.32549, 1 )
 background_energy = 0.64
-ambient_light_color = Color( 1, 0.996078, 0.92549, 1 )
+ambient_light_color = Color( 0.61, 0.0549, 0.184423, 1 )
+ambient_light_energy = 3.34
+fog_enabled = true
+fog_color = Color( 0.701961, 0.541176, 0.501961, 1 )
+fog_sun_color = Color( 0.686275, 0.396078, 0.109804, 1 )
+fog_depth_end = 150.0
 ssao_enabled = true
 ssao_quality = 2
 ssao_edge_sharpness = 2.0

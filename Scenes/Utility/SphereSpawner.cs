@@ -22,7 +22,7 @@ public class SphereSpawner : Spatial
 
   private int _density;
 
-  [Export(PropertyHint.Range, "0,100,")]
+  [Export(PropertyHint.Range, "0,1000,")]
   public int Density
   {
     get => _density;

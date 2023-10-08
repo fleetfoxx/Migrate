@@ -6,3 +6,5 @@
 
 [node name="LeafPile" parent="." instance=ExtResource( 1 )]
 transform = Transform( 5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0 )
+
+[editable path="LeafPile"]
