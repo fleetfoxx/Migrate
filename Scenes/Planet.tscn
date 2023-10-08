@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/Planet.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Utility/SphereSpawner.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scenes/Rocks/Rock3.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Rocks/Rock2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Rocks/Rock4.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Weed.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SphereMesh" id=6]
 material = ExtResource( 5 )
@@ -70,35 +71,37 @@ radial_segments = 8
 rings = 4
 
 [node name="Planet" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, -0.0228724, -0.999735, 0, 0.999735, -0.0228724, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 0.996717, -0.0809616, 0, 0.0809616, 0.996717, 0, 0, 0 )
 script = ExtResource( 1 )
 _turnSpeed = 10.0
-_spinInEditor = true
 _planetMeshPath = NodePath("PlanetMesh")
 
 [node name="PlanetMesh" type="MeshInstance" parent="."]
 mesh = SubResource( 6 )
 
 [node name="LeafSpawner" parent="PlanetMesh" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 Radius = 99.0
 Density = 25
 _sceneToSpawn = ExtResource( 4 )
 
+[node name="WeedSpawner" parent="PlanetMesh" instance=ExtResource( 2 )]
+Radius = 100.0
+Density = 100
+_sceneToSpawn = ExtResource( 10 )
+
 [node name="TreeSpawner" parent="PlanetMesh" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 Radius = 99.0
 Density = 200
 _sceneToSpawn = ExtResource( 3 )
 
 [node name="MushroomSpawner" parent="PlanetMesh" instance=ExtResource( 2 )]
 Radius = 100.0
-Density = 50
+Density = 30
 _sceneToSpawn = ExtResource( 6 )
 
 [node name="RockSpawner1" parent="PlanetMesh" instance=ExtResource( 2 )]
 Radius = 100.0
-Density = 50
+Density = 40
 _sceneToSpawn = ExtResource( 8 )
 
 [node name="RockSpawner2" parent="PlanetMesh" instance=ExtResource( 2 )]

@@ -4,9 +4,12 @@
 [ext_resource path="res://Scenes/ButterflyPlayer.cs" type="Script" id=2]
 
 [sub_resource type="SphereShape" id=1]
+radius = 1.71778
 
 [node name="ButterflyPlayer" type="Area"]
+collision_mask = 3
 script = ExtResource( 2 )
+_butterflyModelPath = NodePath("ButterflyModel")
 
 [node name="ButterflyModel" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 0.913446, -0.40696, 0, 0.40696, 0.913446, 0, 0, 0 )

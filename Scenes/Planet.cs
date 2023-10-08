@@ -10,10 +10,18 @@ public class Planet : Spatial
   [Export] private NodePath _planetMeshPath;
 
   private MeshInstance _planetMesh;
+  private GlobalSettings _globalSettings;
+
 
   public override void _Ready()
   {
+    if (!Engine.EditorHint)
+    {
+      _globalSettings = GetNode<GlobalSettings>(GlobalSettings.PATH);
+    }
+
     _planetMesh = GetNode<MeshInstance>(_planetMeshPath);
+    GlobalRotation = Vector3.Zero;
   }
 
   public override void _Process(float delta)
@@ -27,12 +35,14 @@ public class Planet : Spatial
     }
     else
     {
-      // spin (forward)
-      GlobalRotate(Vector3.Right, Mathf.Deg2Rad(_speed * delta));
+      if (!_globalSettings.IsPaused)
+      {
+        // spin (forward)
+        GlobalRotate(Vector3.Right, Mathf.Deg2Rad(_speed * delta));
 
-      var axis = Input.GetAxis("turn_left", "turn_right");
-      GlobalRotate(Vector3.Up, Mathf.Deg2Rad(axis * _turnSpeed * delta));
-      // _planetMesh.GlobalRotate(Vector3.Back, Mathf.Deg2Rad(axis * _speed * delta));
+        var axis = Input.GetAxis("turn_left", "turn_right");
+        GlobalRotate(Vector3.Up, Mathf.Deg2Rad(axis * _turnSpeed * delta));
+      }
     }
   }
 }

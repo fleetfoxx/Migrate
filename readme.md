@@ -6,4 +6,6 @@
 
 ![Screenshot](./Docs/Screenshot%202023-10-07%20224045.png)
 
-_This is my entry for the [Cozy Fall Jam 2023](https://itch.io/jam/cozy-fall-jam-2023). All assets made by me._ ❤️✌️
+This is my entry for the [Cozy Fall Jam 2023](https://itch.io/jam/cozy-fall-jam-2023).
+
+_All assets made by me unless specified in [credits.md](./credits.md)._ ❤️✌️ _ff_

@@ -63,8 +63,10 @@ public class SphereSpawner : Spatial
 
       parent.AddChild(instance);
 
-      // instance.Translation = pos;
       instance.LookAtFromPosition(GlobalTranslation + pos, GlobalTranslation, Vector3.Up);
+
+      var randRotation = GD.Randf() * 360;
+      instance.RotationDegrees = new Vector3(instance.RotationDegrees.x, instance.RotationDegrees.y, randRotation);
 
       _instances.Add(instance);
     }

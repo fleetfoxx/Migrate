@@ -1,10 +1,37 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Models/Rock3/Rock3.glb" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/ButterflyModel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Utility/ButterflySpawner.tscn" type="PackedScene" id=3]
 
 [node name="Rock3" type="Spatial"]
 
 [node name="Rock3" parent="." instance=ExtResource( 1 )]
 transform = Transform( 10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 0, 0 )
+
+[node name="ButterflySpawner" parent="." instance=ExtResource( 3 )]
+
+[node name="ButterflyPivot" type="Spatial" parent="ButterflySpawner"]
+
+[node name="ButterflyModel" parent="ButterflySpawner/ButterflyPivot" instance=ExtResource( 2 )]
+transform = Transform( -0.499967, 1.74623e-08, -0.00571586, -0.00135207, 0.48581, 0.118267, 0.00555365, 0.118275, -0.485778, 0, 9.07128, 4.09786 )
+
+[node name="ButterflyPivot2" type="Spatial" parent="ButterflySpawner"]
+transform = Transform( 0.182167, -0.983268, 0, 0.983268, 0.182167, 0, 0, 0, 1, 0, 0, 13.4202 )
+
+[node name="ButterflyModel" parent="ButterflySpawner/ButterflyPivot2" instance=ExtResource( 2 )]
+transform = Transform( -0.499967, -0.00100385, -0.00562692, -0.00135208, 0.499029, 0.0311089, 0.00555354, 0.0311221, -0.499, 0.00047195, 6.49742, 3.51372 )
+
+[node name="ButterflyPivot3" type="Spatial" parent="ButterflySpawner"]
+transform = Transform( -0.742409, 0.669947, 0, -0.669947, -0.742409, 0, 0, 0, 1, 0, 0, 19.4517 )
+
+[node name="ButterflyModel" parent="ButterflySpawner/ButterflyPivot3" instance=ExtResource( 2 )]
+transform = Transform( -0.449815, -0.212275, -0.0510482, -0.21816, 0.432446, 0.124083, -0.00852831, 0.133902, -0.481661, 0.0584333, 4.70578, 3.51659 )
+
+[node name="ButterflyPivot4" type="Spatial" parent="ButterflySpawner"]
+transform = Transform( -0.985547, 0.169401, 0, -0.169401, -0.985547, 0, 0, 0, 1, 0, 0, 33.9376 )
+
+[node name="ButterflyModel" parent="ButterflySpawner/ButterflyPivot4" instance=ExtResource( 2 )]
+transform = Transform( -0.33422, -0.158894, -0.336229, -0.346893, -0.029717, 0.358863, -0.134026, 0.473149, -0.0903742, 0.0518615, 0.0488729, 3.10968 )
 
 [editable path="Rock3"]

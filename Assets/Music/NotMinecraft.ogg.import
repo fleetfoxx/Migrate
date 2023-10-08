@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/NotMinecraft.ogg-aa0e40ab3877775f50f6113e94cee781.oggstr"
+
+[deps]
+
+source_file="res://Assets/Music/NotMinecraft.ogg"
+dest_files=[ "res://.import/NotMinecraft.ogg-aa0e40ab3877775f50f6113e94cee781.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
